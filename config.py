@@ -7,9 +7,10 @@ class DevelopmentConfig:
 
 class TestingConfig:
     pass
-class ProductionConfig:
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
-    CACHE_TYPE = "SimpleCache"
+class ProductionConfig: 
+    pass
+    # SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+    # CACHE_TYPE = "SimpleCache"
 
 class TestingConfig:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///testing.db'
