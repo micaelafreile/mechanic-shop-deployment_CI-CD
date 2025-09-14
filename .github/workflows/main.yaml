@@ -5,8 +5,12 @@ on:
     branches: [main, master]
 
 jobs:
-  build:
+  ## previous build step
+
+  test:
+    needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,18 +20,15 @@ jobs:
         with:
           python-version: 3.12 
 
+      - name: Create virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
       - name: Run tests
         run: python -m unittest discover -s tests -p 'test_*.py'
